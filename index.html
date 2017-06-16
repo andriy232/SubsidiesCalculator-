@@ -4,53 +4,129 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel='stylesheet' href="css/styles.css">
     <link rel='stylesheet' href="css/bootstrap.css">
+    <link rel='stylesheet' href="css/styles.css">
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/script.js"></script>
     <script src="js/bootstrap.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="page-header">
-            <h1>Калькулятор субсидій</h1>
-        </div>
-        <!-- tabs left -->
-        <div class="tabbable tabs-left">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#a" data-toggle="tab">Характеристики житлового приміщення</a></li>
-                <li><a href="#b" data-toggle="tab">Інформація про послуги</a></li>
-                <li><a href="#c" data-toggle="tab">Результати розрахунку</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="a">
-                    Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
-
+<div class="container">
+    <div class="page-header">
+        <h1>Калькулятор субсидій</h1>
+    </div>
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#a" data-toggle="tab">Характеристики житлового приміщення</a></li>
+            <li><a href="#b" data-toggle="tab">Інформація про послуги</a></li>
+            <li><a href="#c" data-toggle="tab">Результати розрахунку</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="a">
+                <h3>Характеристики житлового приміщення</h3>
+                <div class="well">Визначте основні загальні параметри, за якими розраховується розмір субсидії</div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                        <strong>Область місця знаходження * </strong>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                Тернопільська <span class="caret"></span></a>
+                            <ul class="dropdown-menu" id='DropDownRegion'>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane" id="b">
-                    Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                        <strong>Тип населеного пункту * </strong>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                Село <span class="caret"></span></a>
+                            <ul class="dropdown-menu" id='DropDownTypeSettlement'>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane" id="c">
-                    Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae.
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                        <strong>Загальна площа житлового приміщення *</strong>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <input type="text" class="form-control" id="inpTotalArea"> кв. м.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                        <strong>Опалювальна площа житлового приміщення *</strong>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <input type="text" class="form-control" id="inpHeatArea"> кв. м.
+                    </div>
+                </div>
+                <div class="row">
+                    <strong>Дані членів господарства</strong>
+                    <table id="tableMembers" class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>№ з/п</th>
+                            <th>Ім'я</th>
+                            <th>Чи є особа працездатною</th>
+                            <th>Дохід</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        <tr>
+                            <td>1</td>
+                            <td><input type="text"></td>
+                            <td><input type="checkbox" id="chbMemIsWork1"></td>
+                            <td>Сукупний дохід: <input type="text" id="inpMemSalary1"> грн.</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><input type="text"></td>
+                            <td><input type="checkbox" id="chbMemIsWork2"></td>
+                            <td>Сукупний дохід: <input type="text" id="inpMemSalary2"> грн.</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><input type="text"></td>
+                            <td><input type="checkbox" id="chbMemIsWork3"></td>
+                            <td>Сукупний дохід: <input type="text" id="inpMemSalary3"> грн.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <button class="btn" id="btnAddRow">Додати</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <button class="btn  pull-right" id="btnGoNext">Перейти далі</button>
+                    </div>
                 </div>
             </div>
+
+
+            <div class="tab-pane" id="b">
+                Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis
+                sit amet augue.
+            </div>
+            <div class="tab-pane" id="c">
+                Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet
+                vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae.
+            </div>
         </div>
-        <!-- /tabs -->
 
     </div>
+</div>
+<!-- /tabs -->
 
-    <div class="btn-group">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                            Dropdown <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li onclick="dropdown(this.innerHTML);"><a href="#">Choice1</a></li>
-            <li onclick="dropdown(this.innerHTML);"><a href="#">Choice2</a></li>
-            <li onclick="dropdown(this.innerHTML);"><a href="#">Choice3</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Choice..</a></li>
-        </ul>
-    </div>
+<script src="js/script.js"></script>
+
 </body>
 
 
