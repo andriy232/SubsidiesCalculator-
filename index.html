@@ -192,8 +192,112 @@
             </div>
 
             <div class="tab-pane" id="c">
-                <h3 id="h3SubsidiesProtocol">
-                    Протокол розрахунку субсидії від </h3>
+                <h3 id="h3SubsidiesProtocol">Протокол розрахунку субсидії від </h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td colspan=4><strong>Характеритики житлового приміщення</strong></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Кількість зареєстрованих осіб</td>
+                        <td id="countOfMembers"></td>
+                        <td>Загальна площа житлового приміщення</td>
+                        <td id="areaOfHome"></td>
+                    </tr>
+                    <tr>
+                        <td>Область місця знаходження</td>
+                        <td id="nameOfRegion"></td>
+                        <td>Опалювальна площа</td>
+                        <td id="areaOfHeating"></td>
+                    </tr>
+                    <tr>
+                        <td colspan=4>Тип населеного пункту</td>
+                        <td colspan=4 id="typeOfSettlement"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td colspan=2><strong>Розрахунок місячного обов'язкового платежу</strong></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Прожитковий мінімум на одну особу в розрахунку на місяць</td>
+                        <td id="calcMin"></td>
+                    </tr>
+                    <tr>
+                        <td>Загальний дохід домогосподарства</td>
+                        <td id="sumSalary"></td>
+                    </tr>
+                    <tr>
+                        <td>Середньомісячний дохід на домогосподарство</td>
+                        <td id="averageSalary"></td>
+                    </tr>
+                    <tr>
+                        <td>Середньомісячний дохід на одну особу</td>
+                        <td id="averageSalaryForOne"></td>
+                    </tr>
+                    <tr>
+                        <td>Відсоток обов'язкової частки платежу</td>
+                        <td id="percentOfBill"></td>
+                    </tr>
+                    <tr>
+                        <td>Обсяг місячного обов'язкового платежу</td>
+                        <td id="valueOfBill"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Розрахунок субсидії щодо сплати за послуги в неопалювальний період</th>
+                        <th id="subsidiesNotHeating">1</th>
+                    </tr>
+                    <tr>
+                        <th>Послуга</th>
+                        <th>Соціальна норма</th>
+                        <th>Тариф</th>
+                        <th>Вартість послуги</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableSubsidiesNotHeating">
+                    <tr>
+                        <td>Опалення</td>
+                        <td id="socialRule"></td>
+                        <td id="tariff"></td>
+                        <td id="cost"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Розрахунок субсидії щодо сплати за послуги в опалювальний період</th>
+                        <th id="subsidiesHeating">1</th>
+                    </tr>
+                    <tr>
+                        <th>Послуга</th>
+                        <th>Соціальна норма</th>
+                        <th>Тариф</th>
+                        <th>Вартість послуги</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableSubsidiesHeating">
+                    <tr>
+                        <td>Опалення</td>
+                        <td id="socialRule"></td>
+                        <td id="tariff"></td>
+                        <td id="cost"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="row" style="margin-bottom: 20px; margin-top: 10px;">
