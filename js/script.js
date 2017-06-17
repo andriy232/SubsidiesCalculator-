@@ -18,6 +18,33 @@ function AddElementToDropdown(el, region) {
     li.appendChild(a);
 }
 
+$('.btnNext').click(function () {
+    $('.nav-tabs > .active').next('li').find('a').trigger('click');
+});
+
+$('.btnPrev').click(function () {
+    $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+});
+
+document.getElementById('chbHotWater').onclick = function () {
+    ShowOrHideElementById('HotWaterGroup');
+};
+document.getElementById('chbColdWater').onclick = function () {
+    ShowOrHideElementById('ColdWaterGroup');
+};
+document.getElementById('chbPowerSupply').onclick = function () {
+    ShowOrHideElementById('PowerSupplyGroup');
+};
+document.getElementById('chbGasSupply').onclick = function () {
+    ShowOrHideElementById('GasSupplyGroup');
+};
+function ShowOrHideElementById(el) {
+    if (document.getElementById(el).style.display == 'none')
+        document.getElementById(el).style.display = 'block';
+    else
+        document.getElementById(el).style.display = 'none';
+};
+
 document.getElementById('btnAddRow').onclick = function () {
     // add new row to table
     var rowsCounter = document.getElementById("tableMembers").rows.length;
@@ -32,14 +59,14 @@ document.getElementById('btnAddRow').onclick = function () {
         index++;
         var td = document.createElement('td');
 
-        if (index % 4==0) {
+        if (index % 4 == 0) {
             td.appendChild(document.createTextNode('Сукупний дохід: '));
 
         }
 
         td.appendChild(el);
 
-        if (index % 4==0) {
+        if (index % 4 == 0) {
             td.appendChild(document.createTextNode(' грн.'));
         }
 
@@ -82,4 +109,15 @@ window.onload = function () {
     settlement.forEach(function (item) {
         AddElementToDropdown('DropDownTypeSettlement', item);
     });
+
+    (function () {
+        // set date to header
+        var date = new Date();
+        var str =
+            (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' +
+            (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) + '.' +
+            date.getFullYear();
+
+        document.getElementById('h3SubsidiesProtocol').innerHTML += str;
+    })();
 };

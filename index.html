@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Калькулятор субсидій</title>
     <link rel='stylesheet' href="css/bootstrap.css">
     <link rel='stylesheet' href="css/styles.css">
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -100,27 +99,112 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="row" style="margin-bottom: 20px;">
+                <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <button class="btn" id="btnAddRow">Додати</button>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <button class="btn  pull-right" id="btnGoNext">Перейти далі</button>
+
                     </div>
                 </div>
             </div>
 
-
             <div class="tab-pane" id="b">
-                Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis
-                sit amet augue.
+                <h3>Інформація про житлово-комунальні послуги</h3>
+                <div class="well">Оберіть послуги, якими користується домогосподарство</div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" disabled="disabled" checked="checked"> Централізоване опалення
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                                опалювальний період
+                                <input type="text" class="form-control" id="inpHeatingPeriod"> грн./м<sup>2</sup><br>
+                                неопалювальний період
+                                <input type="text" class="form-control" id="inpNotHeatingPeriod"> грн./м<sup>2</sup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" checked="checked" id="chbHotWater"> Централізоване постачання
+                                гарячої води
+                            </div>
+                            <div id="HotWaterGroup" class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                                опалювальний період
+                                <input type="text" class="form-control " id="inp"> грн./м<sup>3</sup><br>
+                                неопалювальний період
+                                <input type="text" class="form-control" id="inp"> грн./м<sup>3</sup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" checked="checked" id="chbColdWater"> Централізоване постачання
+                                холодної води
+                            </div>
+                            <div id="ColdWaterGroup" class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                                опалювальний період
+                                <input type="text" class="form-control " id="inp"> грн./м<sup>3</sup><br>
+                                неопалювальний період
+                                <input type="text" class="form-control" id="inp"> грн./м<sup>3</sup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" checked="checked" id="chbGasSupply"> Газопостачання
+                            </div>
+                            <div id="GasSupplyGroup" class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                                опалювальний період
+                                <input type="text" class="form-control " id="inp"> м<sup>3</sup><br>
+                                неопалювальний період
+                                <input type="text" class="form-control" id="inp"> м<sup>3</sup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input type="checkbox" checked="checked" id="chbPowerSupply"> Електропостачання
+                            </div>
+                            <div id="PowerSupplyGroup" class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                                опалювальний період
+                                <input type="text" class="form-control " id="inp"> кВат/год.<br>
+                                неопалювальний період
+                                <input type="text" class="form-control" id="inp"> кВат/год.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="tab-pane" id="c">
-                Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet
-                vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae.
+                <h3 id="h3SubsidiesProtocol">
+                    Протокол розрахунку субсидії від </h3>
             </div>
         </div>
+        <div class="row" style="margin-bottom: 20px; margin-top: 10px;">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <button class="btn" id="btnPrev">Повернутись назад</button>
 
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <button class="btn  pull-right" id="btnNext">Перейти далі</button>
+            </div>
+        </div>
     </div>
 </div>
 <!-- /tabs -->
