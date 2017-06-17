@@ -18,13 +18,28 @@ function AddElementToDropdown(el, region) {
     li.appendChild(a);
 }
 
-$('.btnNext').click(function () {
+// buttons for navigation Next
+$('#btnNext').click(function () {
     $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    Calculate3Tab();
 });
-
-$('.btnPrev').click(function () {
+// buttons for navigation Previous
+$('#btnPrev').click(function () {
     $('.nav-tabs > .active').prev('li').find('a').trigger('click');
 });
+
+document.getElementById('a1').onclick = function () {
+    Calculate3Tab();
+};
+document.getElementById('b1').onclick = function () {
+    Calculate3Tab();
+};
+document.getElementById('c1').onclick = function () {
+    Calculate3Tab();
+};
+document.getElementById('chbHotWater').onclick = function () {
+    ShowOrHideElementById('HotWaterGroup');
+};
 
 document.getElementById('chbHotWater').onclick = function () {
     ShowOrHideElementById('HotWaterGroup');
@@ -38,15 +53,16 @@ document.getElementById('chbPowerSupply').onclick = function () {
 document.getElementById('chbGasSupply').onclick = function () {
     ShowOrHideElementById('GasSupplyGroup');
 };
+
 function ShowOrHideElementById(el) {
     if (document.getElementById(el).style.display == 'none')
         document.getElementById(el).style.display = 'block';
     else
         document.getElementById(el).style.display = 'none';
-};
+}
 
+// add new row to table
 document.getElementById('btnAddRow').onclick = function () {
-    // add new row to table
     var rowsCounter = document.getElementById("tableMembers").rows.length;
 
     var index = 0;
@@ -121,3 +137,24 @@ window.onload = function () {
         document.getElementById('h3SubsidiesProtocol').innerHTML += str;
     })();
 };
+
+function Calculate3Tab() {
+    ViewSpecifications();
+    function ViewSpecifications() {
+
+        var rowsCounter = document.getElementById("tableMembers").rows.length;
+
+        var count = rowsCounter;
+        var homeArea = document.getElementById('inpTotalArea').innerHTML;
+        var homeHeatingArea = document.getElementById('inpHeatArea').innerHTML;
+        var region = document.getElementById('dropRegion').innerHTML;
+        var typeOfSettlement = document.getElementById('dropSettlement').innerHTML;
+
+        document.getElementById('countOfMembers').innerHTML = count;
+        document.getElementById('areaOfHome').innerHTML = homeArea;
+        document.getElementById('areaOfHeating').innerHTML = homeHeatingArea;
+        document.getElementById('nameOfRegion').innerHTML = region;
+        document.getElementById('typeOfSettlement').innerHTML = typeOfSettlement;
+    }
+}
+

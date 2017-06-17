@@ -16,9 +16,9 @@
     </div>
     <div class="tabbable tabs-left">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#a" data-toggle="tab">Характеристики житлового приміщення</a></li>
-            <li><a href="#b" data-toggle="tab">Інформація про послуги</a></li>
-            <li><a href="#c" data-toggle="tab">Результати розрахунку</a></li>
+            <li class="active"><a id="a1" href="#a" data-toggle="tab">Характеристики житлового приміщення</a></li>
+            <li><a id="b1" href="#b" data-toggle="tab">Інформація про послуги</a></li>
+            <li><a id="c1" href="#c" data-toggle="tab">Результати розрахунку</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="a">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <div class="btn-group">
-                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            <a id='dropRegion' class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 Тернопільська <span class="caret"></span></a>
                             <ul class="dropdown-menu" id='DropDownRegion'>
                             </ul>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <div class="btn-group">
-                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            <a id='dropSettlement' class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 Село <span class="caret"></span></a>
                             <ul class="dropdown-menu" id='DropDownTypeSettlement'>
                             </ul>
@@ -193,6 +193,7 @@
 
             <div class="tab-pane" id="c">
                 <h3 id="h3SubsidiesProtocol">Протокол розрахунку субсидії від </h3>
+                <!--інформація-->
                 <table class="table">
                     <thead>
                     <tr>
@@ -213,12 +214,13 @@
                         <td id="areaOfHeating"></td>
                     </tr>
                     <tr>
-                        <td colspan=4>Тип населеного пункту</td>
-                        <td colspan=4 id="typeOfSettlement"></td>
+                        <td >Тип населеного пункту</td>
+                        <td id="typeOfSettlement"></td>
                     </tr>
                     </tbody>
                 </table>
 
+                <!--таблиця для розрахунок обов'язкового місячного платежу-->
                 <table class="table">
                     <thead>
                     <tr>
@@ -253,6 +255,7 @@
                     </tbody>
                 </table>
 
+                <!--таблиця для неопалювального періоду-->
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
@@ -276,6 +279,7 @@
                     </tbody>
                 </table>
 
+                <!--таблиця для опалювального періоду-->
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
