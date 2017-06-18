@@ -94,46 +94,32 @@ function Calculate3Tab() {
 
         if (document.getElementById('t2-inpHeatPeriod').value) {
 
-            var heatValue = document.getElementById('t2-inpHeatPeriodH').value;
-            document.getElementById('t3-tariffH0').innerHTML = heatValue;
-            document.getElementById('t3-costH0').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_HEATING);
-
-            var value = document.getElementById('t2-inpHeatPeriod').value;
-            document.getElementById('t3-tariff0').innerHTML = value;
-            document.getElementById('t3-cost0').innerHTML = RoundTo2Numbers(value * SOCIAL_HEATING);
+            CreateTariff('t2-inpHeatPeriod', 0, SOCIAL_HEATING);
         }
 
         if (document.getElementById('t2-chbHotWater').checked == true) {
 
-            var heatValue = document.getElementById('t2-inpHotWaterH').value;
-            document.getElementById('t3-tariffH1').innerHTML = heatValue;
-            document.getElementById('t3-costH1').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_HOT_WATER);
-
-            var value = document.getElementById('t2-inpHotWater').value;
-            document.getElementById('t3-tariff1').innerHTML = value;
-            document.getElementById('t3-cost1').innerHTML = RoundTo2Numbers(value * SOCIAL_HOT_WATER);
+            CreateTariff('t2-inpHotWater', 1, SOCIAL_HOT_WATER);
         }
 
         if (document.getElementById('t2-chbColdWater').checked == true) {
 
-            var heatValue = document.getElementById('t2-inpColdWaterH').value;
-            document.getElementById('t3-tariffH2').innerHTML = heatValue;
-            document.getElementById('t3-costH2').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_COLD_WATER);
-
-            var value = document.getElementById('t2-inpColdWater').value;
-            document.getElementById('t3-tariff2').innerHTML = value;
-            document.getElementById('t3-cost2').innerHTML = RoundTo2Numbers(value * SOCIAL_COLD_WATER);
+            CreateTariff('t2-inpColdWater', 2, SOCIAL_COLD_WATER);
         }
 
         if (document.getElementById('t2-chbGasSupply').checked == true) {
 
-            var heatValue = document.getElementById('t2-inpGasSupplyH').value;
-            document.getElementById('t3-tariffH3').innerHTML = heatValue;
-            document.getElementById('t3-costH3').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_GAS);
+            CreateTariff('t2-inpGasSupply', 3, SOCIAL_GAS);
+        }
 
-            var value = document.getElementById('t2-inpGasSupply').value;
-            document.getElementById('t3-tariff3').innerHTML = value;
-            document.getElementById('t3-cost3').innerHTML = RoundTo2Numbers(value * SOCIAL_GAS);
+        function CreateTariff(input, number, constant) {
+            var heatValue = document.getElementById(input + 'H').value;
+            document.getElementById('t3-tariffH' + number).innerHTML = heatValue;
+            document.getElementById('t3-costH' + number).innerHTML = RoundTo2Numbers(heatValue * constant);
+
+            var value = document.getElementById(input).value;
+            document.getElementById('t3-tariff' + number).innerHTML = value;
+            document.getElementById('t3-cost' + number).innerHTML = RoundTo2Numbers(value * constant);
         }
 
         if (document.getElementById('t2-chbPowerSupply').checked == true) {
@@ -163,10 +149,15 @@ function Calculate3Tab() {
             var val = document.getElementById('t3-cost' + i).innerHTML;
             if (val != "") {
                 subsidiesSum += parseFloat(document.getElementById('t3-cost' + i).innerHTML);
-                console.log(parseFloat(document.getElementById('t3-cost' + i).innerHTML));
+            }
+            var valH = document.getElementById('t3-costH' + i).innerHTML;
+            if (valH != "") {
+                subsidiesSumH += parseFloat(document.getElementById('t3-costH' + i).innerHTML);
             }
         }
-        console.log(subsidiesSum);
+
+        subsidiesSum = RoundTo2Numbers(subsidiesSum);
+        subsidiesSumH = RoundTo2Numbers(subsidiesSumH);
 
         var str = document.getElementById('t3-valueOfBill').innerHTML;
         var num = str.slice(0, str.indexOf(' '));
@@ -175,13 +166,16 @@ function Calculate3Tab() {
         var billSum = subsidiesSum - monthBill;
         var billSumH = subsidiesSumH - monthBill;
 
+        billSum = RoundTo2Numbers(billSum);
+        billSumH = RoundTo2Numbers(billSumH);
+
         document.getElementById('t3-servicesSum').innerHTML = subsidiesSum + ' грн.';
-        document.getElementById('t3-subsidies').innerHTML = 'Субсидія в неопалювальний період: ' + subsidiesSum + ' грн. (' + billSum + ' грн. - ' + monthBill + ' грн.)';
-        document.getElementById('t3-headerTableSubsidies').innerHTML = subsidiesSum + ' грн.';
+        document.getElementById('t3-subsidies').innerHTML = 'Субсидія в неопалювальний період: ' + billSum + ' грн. (' + subsidiesSum + ' грн. - ' + monthBill + ' грн.)';
+        document.getElementById('t3-headerTableSubsidies').innerHTML = billSum + ' грн.';
 
         document.getElementById('t3-servicesSumH').innerHTML = subsidiesSumH + ' грн.';
-        document.getElementById('t3-subsidiesH').innerHTML = 'Субсидія в опалювальний період: ' + subsidiesSumH + ' грн. (' + billSumH + ' грн. - ' + monthBill + ' грн.)';
-        document.getElementById('t3-headerTableSubsidiesH').innerHTML = subsidiesSumH + ' грн.';
+        document.getElementById('t3-subsidiesH').innerHTML = 'Субсидія в опалювальний період: ' + billSumH + ' грн. (' + subsidiesSumH + ' грн. - ' + monthBill + ' грн.)';
+        document.getElementById('t3-headerTableSubsidiesH').innerHTML = billSumH + ' грн.';
 
         // fill and view social rules for services at third tab
         function FillSocialRules() {
