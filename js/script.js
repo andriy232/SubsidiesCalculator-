@@ -1,5 +1,10 @@
 var MINIMUM_BILL = 1544;
-
+var SOCIAL_HEATING = 48.87;
+var SOCIAL_HOT_WATER = 1.6;
+var SOCIAL_COLD_WATER = 4;
+var SOCIAL_GAS = 4.4;
+var SOCIAL_POWER = 90;
+var SOCIAL_POWER_OVER = 168;
 
 function DropdownClick(val) {
     var y = document.getElementsByClassName('btn dropdown-toggle');
@@ -21,48 +26,26 @@ function AddElementToDropdown(el, region) {
     li.appendChild(a);
 }
 
-
 function ShowOrHideElementById(el) {
     if (document.getElementById(el).style.display == 'none')
-        document.getElementById(el).style.display = 'block';
+        document.getElementById(el).style.display = 'table-row';
     else
         document.getElementById(el).style.display = 'none';
 }
 
+function RoundTo2Numbers(num) {
+    return Math.round(num * 100) / 100;
+}
+
 function Calculate3Tab() {
     ViewSpecifications();
-    if (document.getElementById('t1-inpMemSalary0').value) {
+    CalculateSubsidies();
 
+    if (document.getElementById('t1-inpMemSalary0').value) {
         CalculateMinimumBill();
     }
-    function CalculateMinimumBill() {
-        document.getElementById('t3-calcMin').innerHTML = MINIMUM_BILL + ' грн.';
-        var peopleCount = document.getElementById('t1-tableMembers').rows.length - 1;
-        console.log(peopleCount);
 
-        var salarySum = 0;
-
-        for (var i = 0; i < peopleCount; i++) {
-            var salaryEl = document.getElementById('t1-inpMemSalary' + i);
-            // console.log(salaryEl.value);
-            salarySum += parseFloat(salaryEl.value);
-        }
-
-        function RoundTo2Numbers(num) {
-            return Math.round(num * 100)/100;
-        }
-        var averageSalary = RoundTo2Numbers(salarySum / 12);
-        var averageSalaryForOne = RoundTo2Numbers(averageSalary / peopleCount);
-        var percent = RoundTo2Numbers(averageSalaryForOne / MINIMUM_BILL / 2 * 15);
-        var bill = RoundTo2Numbers(averageSalaryForOne / 100 * percent);
-
-        document.getElementById('t3-sumSalary').innerHTML = salarySum + ' грн. (сумарний дохід за попередній рік)';
-        document.getElementById('t3-averageSalary').innerHTML = averageSalary + ' грн. (= ' + salarySum + ' грн. / 12 місяців)';
-        document.getElementById('t3-averageSalaryForOne').innerHTML = averageSalaryForOne + ' грн. (= ' + averageSalary + 'грн. / ' + peopleCount + ' особу(и))';
-        document.getElementById('t3-percentOfBill').innerHTML = percent + ' % (= ' + averageSalaryForOne + ' грн. / ' + MINIMUM_BILL + ' грн. / 2* 15%)';
-        document.getElementById('t3-valueOfBill').innerHTML = bill + ' грн. (= ' + averageSalaryForOne + ' грн. / 100 * ' + percent + ' %)';
-    }
-
+    // view first table at third tab
     function ViewSpecifications() {
         var rowsCounter = document.getElementById('t1-tableMembers').rows.length;
 
@@ -77,6 +60,147 @@ function Calculate3Tab() {
         document.getElementById('areaOfHeating').innerHTML = homeHeatingArea;
         document.getElementById('nameOfRegion').innerHTML = region;
         document.getElementById('typeOfSettlement').innerHTML = typeOfSettlement;
+    }
+
+    // calculate and view second table at third tab
+    function CalculateMinimumBill() {
+        document.getElementById('t3-calcMin').innerHTML = MINIMUM_BILL + ' грн.';
+        var peopleCount = document.getElementById('t1-tableMembers').rows.length - 1;
+
+        var salarySum = 0;
+
+        for (var i = 0; i < peopleCount; i++) {
+            var salaryEl = document.getElementById('t1-inpMemSalary' + i);
+            salarySum += parseFloat(salaryEl.value);
+        }
+
+
+        var averageSalary = RoundTo2Numbers(salarySum / 12);
+        var averageSalaryForOne = RoundTo2Numbers(averageSalary / peopleCount);
+        var percent = RoundTo2Numbers(averageSalaryForOne / MINIMUM_BILL / 2 * 15);
+        var bill = RoundTo2Numbers(averageSalaryForOne / 100 * percent);
+
+        document.getElementById('t3-sumSalary').innerHTML = salarySum + ' грн. (сумарний дохід за попередній рік)';
+        document.getElementById('t3-averageSalary').innerHTML = averageSalary + ' грн. (= ' + salarySum + ' грн. / 12 місяців)';
+        document.getElementById('t3-averageSalaryForOne').innerHTML = averageSalaryForOne + ' грн. (= ' + averageSalary + 'грн. / ' + peopleCount + ' особу(и))';
+        document.getElementById('t3-percentOfBill').innerHTML = percent + ' % (= ' + averageSalaryForOne + ' грн. / ' + MINIMUM_BILL + ' грн. / 2* 15%)';
+        document.getElementById('t3-valueOfBill').innerHTML = bill + ' грн. (= ' + averageSalaryForOne + ' грн. / 100 * ' + percent + ' %)';
+    }
+
+    // calculate and view third and fourth tables third tab
+    function CalculateSubsidies() {
+
+        FillSocialRules();
+
+        if (document.getElementById('t2-inpHeatPeriod').value) {
+
+            var heatValue = document.getElementById('t2-inpHeatPeriodH').value;
+            document.getElementById('t3-tariffH0').innerHTML = heatValue;
+            document.getElementById('t3-costH0').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_HEATING);
+
+            var value = document.getElementById('t2-inpHeatPeriod').value;
+            document.getElementById('t3-tariff0').innerHTML = value;
+            document.getElementById('t3-cost0').innerHTML = RoundTo2Numbers(value * SOCIAL_HEATING);
+        }
+
+        if (document.getElementById('t2-chbHotWater').checked == true) {
+
+            var heatValue = document.getElementById('t2-inpHotWaterH').value;
+            document.getElementById('t3-tariffH1').innerHTML = heatValue;
+            document.getElementById('t3-costH1').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_HOT_WATER);
+
+            var value = document.getElementById('t2-inpHotWater').value;
+            document.getElementById('t3-tariff1').innerHTML = value;
+            document.getElementById('t3-cost1').innerHTML = RoundTo2Numbers(value * SOCIAL_HOT_WATER);
+        }
+
+        if (document.getElementById('t2-chbColdWater').checked == true) {
+
+            var heatValue = document.getElementById('t2-inpColdWaterH').value;
+            document.getElementById('t3-tariffH2').innerHTML = heatValue;
+            document.getElementById('t3-costH2').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_COLD_WATER);
+
+            var value = document.getElementById('t2-inpColdWater').value;
+            document.getElementById('t3-tariff2').innerHTML = value;
+            document.getElementById('t3-cost2').innerHTML = RoundTo2Numbers(value * SOCIAL_COLD_WATER);
+        }
+
+        if (document.getElementById('t2-chbGasSupply').checked == true) {
+
+            var heatValue = document.getElementById('t2-inpGasSupplyH').value;
+            document.getElementById('t3-tariffH3').innerHTML = heatValue;
+            document.getElementById('t3-costH3').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_GAS);
+
+            var value = document.getElementById('t2-inpGasSupply').value;
+            document.getElementById('t3-tariff3').innerHTML = value;
+            document.getElementById('t3-cost3').innerHTML = RoundTo2Numbers(value * SOCIAL_GAS);
+        }
+
+        if (document.getElementById('t2-chbPowerSupply').checked == true) {
+
+            var heatValue = document.getElementById('t2-inpPowerSupplyH').value;
+            document.getElementById('t3-tariffH4').innerHTML = heatValue;
+            if (heatValue > 100) {
+                document.getElementById('t3-costH4').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_POWER_OVER);
+            } else {
+                document.getElementById('t3-costH4').innerHTML = RoundTo2Numbers(heatValue * SOCIAL_POWER);
+            }
+
+            var value = document.getElementById('t2-inpPowerSupply').value;
+            document.getElementById('t3-tariff4').innerHTML = value;
+            if (value > 100) {
+                document.getElementById('t3-cost4').innerHTML = RoundTo2Numbers(value * SOCIAL_POWER_OVER);
+            } else {
+                document.getElementById('t3-cost4').innerHTML = RoundTo2Numbers(value * SOCIAL_POWER);
+            }
+        }
+
+        var subsidiesSum = 0, subsidiesSumH = 0;
+
+        // console.log('рядків: ' + document.getElementById('t3-bodySubsidies').rows.length-2);
+
+        for (var i = 0; i < document.getElementById('t3-bodySubsidies').rows.length - 2; i++) {
+            var val = document.getElementById('t3-cost' + i).innerHTML;
+            if (val != "") {
+                subsidiesSum += parseFloat(document.getElementById('t3-cost' + i).innerHTML);
+                console.log(parseFloat(document.getElementById('t3-cost' + i).innerHTML));
+            }
+        }
+        console.log(subsidiesSum);
+
+        var str = document.getElementById('t3-valueOfBill').innerHTML;
+        var num = str.slice(0, str.indexOf(' '));
+        var monthBill = parseFloat(num);
+
+        var billSum = subsidiesSum - monthBill;
+        var billSumH = subsidiesSumH - monthBill;
+
+        document.getElementById('t3-servicesSum').innerHTML = subsidiesSum + ' грн.';
+        document.getElementById('t3-subsidies').innerHTML = 'Субсидія в неопалювальний період: ' + subsidiesSum + ' грн. (' + billSum + ' грн. - ' + monthBill + ' грн.)';
+        document.getElementById('t3-headerTableSubsidies').innerHTML = subsidiesSum + ' грн.';
+
+        document.getElementById('t3-servicesSumH').innerHTML = subsidiesSumH + ' грн.';
+        document.getElementById('t3-subsidiesH').innerHTML = 'Субсидія в опалювальний період: ' + subsidiesSumH + ' грн. (' + billSumH + ' грн. - ' + monthBill + ' грн.)';
+        document.getElementById('t3-headerTableSubsidiesH').innerHTML = subsidiesSumH + ' грн.';
+
+        // fill and view social rules for services at third tab
+        function FillSocialRules() {
+            document.getElementById('t3-socialRule0').innerHTML = SOCIAL_HEATING + ' кв. м.';
+            document.getElementById('t3-socialRuleH0').innerHTML = SOCIAL_HEATING + ' кв. м.';
+
+            document.getElementById('t3-socialRule1').innerHTML = SOCIAL_HOT_WATER + ' куб. м.';
+            document.getElementById('t3-socialRuleH1').innerHTML = SOCIAL_HOT_WATER + ' куб. м.';
+
+            document.getElementById('t3-socialRule2').innerHTML = SOCIAL_COLD_WATER + ' куб. м.';
+            document.getElementById('t3-socialRuleH2').innerHTML = SOCIAL_COLD_WATER + ' куб. м.';
+
+            document.getElementById('t3-socialRule3').innerHTML = SOCIAL_GAS + ' куб. м.';
+            document.getElementById('t3-socialRuleH3').innerHTML = SOCIAL_GAS + ' куб. м.';
+
+            document.getElementById('t3-socialRule4').innerHTML = SOCIAL_POWER + ' коп. до 100 кВт, \n' + SOCIAL_POWER_OVER + ' коп. від 100 кВт';
+            document.getElementById('t3-socialRuleH4').innerHTML = SOCIAL_POWER + ' коп. до 100 кВт, \n' + SOCIAL_POWER_OVER + ' коп. від 100 кВт';
+
+        }
     }
 }
 
@@ -169,8 +293,12 @@ window.onload = function () {
 
 // buttons for navigation Next
 $('#btnNext').click(function () {
-    $('.nav-tabs > .active').next('li').find('a').trigger('click');
-    Calculate3Tab();
+    if (document.getElementById('t1-inpMemSalary0').value) {
+        $('.nav-tabs > .active').next('li').find('a').trigger('click');
+        Calculate3Tab();
+    } else {
+        alert('Порожнє поле!');
+    }
 });
 // buttons for navigation Previous
 $('#btnPrev').click(function () {
@@ -187,19 +315,39 @@ document.getElementById('t2').onclick = function () {
 document.getElementById('t3').onclick = function () {
     Calculate3Tab();
 };
-document.getElementById('chbHotWater').onclick = function () {
-    ShowOrHideElementById('HotWaterGroup');
+document.getElementById('t2-chbHotWater').onclick = function () {
+    ShowOrHideElementById('t2-HotWaterGroup');
+    ShowOrHideElementById('t3-row1');
+    ShowOrHideElementById('t3-rowH1');
+    document.getElementById('t2-inpHotWater').value = "";
+    document.getElementById('t2-inpHotWaterH').value = "";
 };
-
-document.getElementById('chbHotWater').onclick = function () {
-    ShowOrHideElementById('HotWaterGroup');
+document.getElementById('t2-chbColdWater').onclick = function () {
+    ShowOrHideElementById('t2-ColdWaterGroup');
+    ShowOrHideElementById('t3-row2');
+    ShowOrHideElementById('t3-rowH2');
+    document.getElementById('t2-inpColdWater').value = "";
+    document.getElementById('t2-inpColdWaterH').value = "";
 };
-document.getElementById('chbColdWater').onclick = function () {
-    ShowOrHideElementById('ColdWaterGroup');
+document.getElementById('t2-chbPowerSupply').onclick = function () {
+    ShowOrHideElementById('t2-PowerSupplyGroup');
+    ShowOrHideElementById('t3-row3');
+    ShowOrHideElementById('t3-rowH3');
+    document.getElementById('t2-inpPowerSupply').value = "";
+    document.getElementById('t2-inpPowerSupplyH').value = "";
 };
-document.getElementById('chbPowerSupply').onclick = function () {
-    ShowOrHideElementById('PowerSupplyGroup');
+document.getElementById('t2-chbGasSupply').onclick = function () {
+    ShowOrHideElementById('t2-GasSupplyGroup');
+    ShowOrHideElementById('t3-row4');
+    ShowOrHideElementById('t3-rowH4');
+    document.getElementById('t2-inpGasSupply').value = "";
+    document.getElementById('t2-inpGasSupplyH').value = "";
 };
-document.getElementById('chbGasSupply').onclick = function () {
-    ShowOrHideElementById('GasSupplyGroup');
-};
+init();
+function init() {
+    // hide all groups
+    document.getElementById('t2-chbHotWater').click();
+    document.getElementById('t2-chbColdWater').click();
+    document.getElementById('t2-chbPowerSupply').click();
+    document.getElementById('t2-chbGasSupply').click();
+}
