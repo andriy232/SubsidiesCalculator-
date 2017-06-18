@@ -55,7 +55,7 @@
                         <strong>Загальна площа житлового приміщення *</strong>
                     </div>
                     <div class='col-md-6 col-sm-6 col-xs-6'>
-                        <input type='text' class='form-control' id='inpTotalArea'> кв. м.
+                        <input type='number' class='form-control' min='1' id='inpTotalArea'> кв. м.
                     </div>
                 </div>
                 <div class='row'>
@@ -63,7 +63,7 @@
                         <strong>Опалювальна площа житлового приміщення *</strong>
                     </div>
                     <div class='col-md-6 col-sm-6 col-xs-6'>
-                        <input type='text' class='form-control' id='inpHeatArea'> кв. м.
+                        <input type='number' class='form-control' min='1' class='form-control' id='inpHeatArea'> кв. м.
                     </div>
                 </div>
                 <div class='row'>
@@ -82,7 +82,7 @@
                             <td>1</td>
                             <td><input type='text'></td>
                             <td><input type='checkbox' id='t1-chbMemIsWork0'></td>
-                            <td>Сукупний дохід: <input type='text' id='t1-inpMemSalary0'> грн.</td>
+                            <td>Сукупний дохід: <input type='number' class='form-control' min='1' id='t1-inpMemSalary0'> грн.</td>
                         </tr>
                         </tbody>
                     </table>
@@ -108,9 +108,9 @@
                             </div>
                             <div class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type='text' class='form-control' id='inpHeatingPeriod'> грн./м<sup>2</sup><br>
+                                <input type='number' class='form-control' min='1' class='form-control' id='t2-inpHeatPeriodH'> грн./м<sup>2</sup><br>
                                 неопалювальний період
-                                <input type='text' class='form-control' id='inpNotHeatingPeriod'> грн./м<sup>2</sup>
+                                <input type='number' class='form-control' min='1' class='form-control' id='t2-inpHeatPeriod'> грн./м<sup>2</sup>
                             </div>
                         </div>
                     </div>
@@ -119,14 +119,14 @@
                     <div class='panel-body'>
                         <div class='row'>
                             <div class='col-md-4 col-sm-4 col-xs-4'>
-                                <input type='checkbox' checked='checked' id='chbHotWater'> Централізоване постачання
+                                <input type='checkbox' checked='checked' id='t2-chbHotWater'> Централізоване постачання
                                 гарячої води
                             </div>
-                            <div id='HotWaterGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
+                            <div id='t2-HotWaterGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type='text' class='form-control ' id='t2-inpHotWaterH'> грн./м<sup>3</sup><br>
+                                <input type='number' class='form-control' min='1' class='form-control ' id='t2-inpHotWaterH'> грн./м<sup>3</sup><br>
                                 неопалювальний період
-                                <input type='text' class='form-control' id='t2-inpHotWater'> грн./м<sup>3</sup>
+                                <input type='number' class='form-control' min='1' class='form-control' id='t2-inpHotWater'> грн./м<sup>3</sup>
                             </div>
                         </div>
                     </div>
@@ -135,14 +135,14 @@
                     <div class='panel-body'>
                         <div class='row'>
                             <div class='col-md-4 col-sm-4 col-xs-4'>
-                                <input type='checkbox' checked='checked' id='chbColdWater'> Централізоване постачання
+                                <input type='checkbox' checked='checked' id='t2-chbColdWater'> Централізоване постачання
                                 холодної води
                             </div>
-                            <div id='ColdWaterGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
+                            <div id='t2-ColdWaterGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type='text' class='form-control ' id='t2-inpColdWaterH'> грн./м<sup>3</sup><br>
+                                <input type='number' class='form-control' min='1' class='form-control ' id='t2-inpColdWaterH'> грн./м<sup>3</sup><br>
                                 неопалювальний період
-                                <input type='text' class='form-control' id='t2-inpColdWater'> грн./м<sup>3</sup>
+                                <input type='number' class='form-control' min='1' class='form-control' id='t2-inpColdWater'> грн./м<sup>3</sup>
                             </div>
                         </div>
                     </div>
@@ -151,13 +151,13 @@
                     <div class='panel-body'>
                         <div class='row'>
                             <div class='col-md-4 col-sm-4 col-xs-4'>
-                                <input type='checkbox' checked='checked' id='chbGasSupply'> Газопостачання
+                                <input type='checkbox' checked='checked' id='t2-chbGasSupply'> Газопостачання
                             </div>
-                            <div id='GasSupplyGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
+                            <div id='t2-GasSupplyGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type='text' class='form-control ' id='t2-inpGasSupplyH'> м<sup>3</sup><br>
+                                <input type='number' class='form-control' min='1' id='t2-inpGasSupplyH'> м<sup>3</sup><br>
                                 неопалювальний період
-                                <input type='text' class='form-control' id='t2-inpGasSupply'> м<sup>3</sup>
+                                <input type='number' class='form-control' min='1' id='t2-inpGasSupply'> м<sup>3</sup>
                             </div>
                         </div>
                     </div>
@@ -166,13 +166,13 @@
                     <div class='panel-body'>
                         <div class='row'>
                             <div class='col-md-4 col-sm-4 col-xs-4'>
-                                <input type='checkbox' checked='checked' id='chbPowerSupply'> Електропостачання
+                                <input type='checkbox' checked='checked' id='t2-chbPowerSupply'> Електропостачання
                             </div>
-                            <div id='PowerSupplyGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
+                            <div id='t2-PowerSupplyGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type='text' class='form-control ' id='t2-inpPowerSupplyH'> кВат/год.<br>
+                                <input type='number' class='form-control ' id='t2-inpPowerSupplyH'> кВат/год.<br>
                                 неопалювальний період
-                                <input type='text' class='form-control' id='t2-inpPowerSupply   '> кВат/год.
+                                <input type='number' class='form-control' id='t2-inpPowerSupply'> кВат/год.
                             </div>
                         </div>
                     </div>
@@ -244,11 +244,11 @@
                 </table>
 
                 <!--таблиця для неопалювального періоду-->
-                <table class='table table-striped table-hover'>
+                <table id='t3-tableSubsidies' class='table table-striped table-hover'>
                     <thead>
                     <tr>
-                        <th>Розрахунок субсидії щодо сплати за послуги в неопалювальний період</th>
-                        <th id='subsidiesNotHeating'>1</th>
+                        <th>Розрахунок субсидії щодо сплати за послуги в неопалювальний період</th><th></th><th></th>
+                        <th colspan="3" id='t3-headerTableSubsidies'>1</th>
                     </tr>
                     <tr>
                         <th>Послуга</th>
@@ -257,22 +257,53 @@
                         <th>Вартість послуги</th>
                     </tr>
                     </thead>
-                    <tbody id='tableSubsidiesNotHeating'>
-                    <tr>
+                    <tbody id='t3-bodySubsidies'>
+                    <tr id='t3-row0'>
                         <td>Опалення</td>
-                        <td id='t3-socialRule'></td>
-                        <td id='t3-tariff'></td>
-                        <td id='t3-cost'></td>
+                        <td id='t3-socialRule0'></td>
+                        <td id='t3-tariff0'></td>
+                        <td id='t3-cost0'></td>
+                    </tr>
+                    <tr id='t3-row1'>
+                        <td>Централізоване постачання гарячої води та водовідведення</td>
+                        <td id='t3-socialRule1'></td>
+                        <td id='t3-tariff1'></td>
+                        <td id='t3-cost1'></td>
+                    </tr>
+                    <tr id='t3-row2'>
+                        <td>Централізоване постачання холодної води та водовідведення</td>
+                        <td id='t3-socialRule2'></td>
+                        <td id='t3-tariff2'></td>
+                        <td id='t3-cost2'></td>
+                    </tr>
+                    <tr id='t3-row3'>
+                        <td>Газопостачання</td>
+                        <td id='t3-socialRule3'></td>
+                        <td id='t3-tariff3'></td>
+                        <td id='t3-cost3'></td>
+                    </tr>
+                    <tr id='t3-row4'>
+                        <td>Електропостачання</td>
+                        <td id='t3-socialRule4'></td>
+                        <td id='t3-tariff4'></td>
+                        <td id='t3-cost4'></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;">Всього:</td>
+                        <td id='t3-servicesSum'></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: large" colspan="4" id='t3-subsidies'>Front</td>
                     </tr>
                     </tbody>
                 </table>
 
                 <!--таблиця для опалювального періоду-->
-                <table class='table table-striped table-hover'>
+                <table id='t3-tableSubsidiesH' class='table table-striped table-hover'>
                     <thead>
                     <tr>
-                        <th>Розрахунок субсидії щодо сплати за послуги в опалювальний період</th>
-                        <th id='subsidiesHeating'>1</th>
+                        <th>Розрахунок субсидії щодо сплати за послуги в опалювальний період</th><th></th><th></th>
+                        <th colspan="3" id='t3-headerTableSubsidiesH'>1</th>
                     </tr>
                     <tr>
                         <th>Послуга</th>
@@ -281,12 +312,43 @@
                         <th>Вартість послуги</th>
                     </tr>
                     </thead>
-                    <tbody id='tableSubsidiesHeating'>
-                    <tr>
+                    <tbody id='t3-bodySubsidiesH'>
+                    <tr id='t3-rowH0'>
                         <td>Опалення</td>
-                        <td id='t3-socialRuleH'></td>
-                        <td id='t3-tariffH'></td>
-                        <td id='t3-costH'></td>
+                        <td id='t3-socialRuleH0'></td>
+                        <td id='t3-tariffH0'></td>
+                        <td id='t3-costH0'></td>
+                    </tr>
+                    <tr id='t3-rowH1'>
+                        <td>Централізоване постачання гарячої води та водовідведення</td>
+                        <td id='t3-socialRuleH1'></td>
+                        <td id='t3-tariffH1'></td>
+                        <td id='t3-costH1'></td>
+                    </tr>
+                    <tr id='t3-rowH2'>
+                        <td>Централізоване постачання холодної води та водовідведення</td>
+                        <td id='t3-socialRuleH2'></td>
+                        <td id='t3-tariffH2'></td>
+                        <td id='t3-costH2'></td>
+                    </tr>
+                    <tr id='t3-rowH3'>
+                        <td>Газопостачання</td>
+                        <td id='t3-socialRuleH3'></td>
+                        <td id='t3-tariffH3'></td>
+                        <td id='t3-costH3'></td>
+                    </tr>
+                    <tr id='t3-rowH4'>
+                        <td>Електропостачання</td>
+                        <td id='t3-socialRuleH4'></td>
+                        <td id='t3-tariffH4'></td>
+                        <td id='t3-costH4'></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;">Всього:</td>
+                        <td id='t3-servicesSumH'></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: large" colspan="4" id='t3-subsidiesH'>Front</td>
                     </tr>
                     </tbody>
                 </table>
