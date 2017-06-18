@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <title>Калькулятор субсидій</title>
-    <link rel='stylesheet' href="css/bootstrap.css">
-    <link rel='stylesheet' href="css/styles.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <link rel='stylesheet' href='css/bootstrap.css'>
+    <link rel='stylesheet' href='css/styles.css'>
+    <script src='js/jquery-3.2.1.min.js'></script>
+    <script src='js/bootstrap.js'></script>
 </head>
 
 <body>
-<div class="container">
-    <div class="page-header">
+<div class='container'>
+    <div class='page-header'>
         <h1>Калькулятор субсидій</h1>
     </div>
-    <div class="tabbable tabs-left">
-        <ul class="nav nav-tabs">
-            <li class="active"><a id="a1" href="#a" data-toggle="tab">Характеристики житлового приміщення</a></li>
-            <li><a id="b1" href="#b" data-toggle="tab">Інформація про послуги</a></li>
-            <li><a id="c1" href="#c" data-toggle="tab">Результати розрахунку</a></li>
+    <div class='tabbable tabs-left'>
+        <ul class='nav nav-tabs'>
+            <li class='active'><a id='t1' href='#a' data-toggle='tab'>Характеристики житлового приміщення</a></li>
+            <li><a id='t2' href='#b' data-toggle='tab'>Інформація про послуги</a></li>
+            <li><a id='t3' href='#c' data-toggle='tab'>Результати розрахунку</a></li>
         </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="a">
+        <div class='tab-content'>
+            <div class='tab-pane active' id='a'>
                 <h3>Характеристики житлового приміщення</h3>
-                <div class="well">Визначте основні загальні параметри, за якими розраховується розмір субсидії</div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                <div class='well'>Визначте основні загальні параметри, за якими розраховується розмір субсидії</div>
+                <div class='row'>
+                    <div class='col-md-6 col-sm-6 col-xs-6' style='text-align: right'>
                         <strong>Область місця знаходження * </strong>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <div class="btn-group">
-                            <a id='dropRegion' class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                Тернопільська <span class="caret"></span></a>
-                            <ul class="dropdown-menu" id='DropDownRegion'>
+                    <div class='col-md-6 col-sm-6 col-xs-6'>
+                        <div class='btn-group'>
+                            <a id='t1-dropRegion' class='btn dropdown-toggle' data-toggle='dropdown' href='#'>
+                                Тернопільська <span class='caret'></span></a>
+                            <ul class='dropdown-menu' id='t1-DropDownRegionUl'>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                <div class='row'>
+                    <div class='col-md-6 col-sm-6 col-xs-6' style='text-align: right'>
                         <strong>Тип населеного пункту * </strong>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <div class="btn-group">
-                            <a id='dropSettlement' class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                Село <span class="caret"></span></a>
-                            <ul class="dropdown-menu" id='DropDownTypeSettlement'>
+                    <div class='col-md-6 col-sm-6 col-xs-6'>
+                        <div class='btn-group'>
+                            <a id='dropSettlement' class='btn dropdown-toggle' data-toggle='dropdown' href='#'>
+                                Село <span class='caret'></span></a>
+                            <ul class='dropdown-menu' id='DropDownTypeSettlement'>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                <div class='row'>
+                    <div class='col-md-6 col-sm-6 col-xs-6' style='text-align: right'>
                         <strong>Загальна площа житлового приміщення *</strong>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" class="form-control" id="inpTotalArea"> кв. м.
+                    <div class='col-md-6 col-sm-6 col-xs-6'>
+                        <input type='text' class='form-control' id='inpTotalArea'> кв. м.
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: right">
+                <div class='row'>
+                    <div class='col-md-6 col-sm-6 col-xs-6' style='text-align: right'>
                         <strong>Опалювальна площа житлового приміщення *</strong>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="text" class="form-control" id="inpHeatArea"> кв. м.
+                    <div class='col-md-6 col-sm-6 col-xs-6'>
+                        <input type='text' class='form-control' id='inpHeatArea'> кв. м.
                     </div>
                 </div>
-                <div class="row">
+                <div class='row'>
                     <strong>Дані членів господарства</strong>
-                    <table id="tableMembers" class="table table-striped table-hover">
+                    <table id='t1-tableMembers' class='table table-striped table-hover'>
                         <thead>
                         <tr>
                             <th>№ з/п</th>
@@ -77,124 +77,112 @@
                             <th>Дохід</th>
                         </tr>
                         </thead>
-                        <tbody id="tableBody">
-                        <tr>
+                        <tbody id='t1-tableBody'>
+                        <tr id="t1-row1">
                             <td>1</td>
-                            <td><input type="text"></td>
-                            <td><input type="checkbox" id="chbMemIsWork1"></td>
-                            <td>Сукупний дохід: <input type="text" id="inpMemSalary1"> грн.</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><input type="text"></td>
-                            <td><input type="checkbox" id="chbMemIsWork2"></td>
-                            <td>Сукупний дохід: <input type="text" id="inpMemSalary2"> грн.</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td><input type="text"></td>
-                            <td><input type="checkbox" id="chbMemIsWork3"></td>
-                            <td>Сукупний дохід: <input type="text" id="inpMemSalary3"> грн.</td>
+                            <td><input type='text'></td>
+                            <td><input type='checkbox' id='t1-chbMemIsWork1'></td>
+                            <td>Сукупний дохід: <input type='text' id='t1-inpMemSalary1'> грн.</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <button class="btn" id="btnAddRow">Додати</button>
+                <div class='row'>
+                    <div class='col-md-6 col-sm-6 col-xs-6'>
+                        <button class='btn' id='btnAddRow'>Додати особу</button>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-
+                    <div class='col-md-6 col-sm-6 col-xs-6'>
+                        <button class='btn pull-right' id='btnDelRow'>Видалити останню особу</button>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-pane" id="b">
+            <div class='tab-pane' id='b'>
                 <h3>Інформація про житлово-комунальні послуги</h3>
-                <div class="well">Оберіть послуги, якими користується домогосподарство</div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" disabled="disabled" checked="checked"> Централізоване опалення
+                <div class='well'>Оберіть послуги, якими користується домогосподарство</div>
+                <div class='panel panel-default'>
+                    <div class='panel-body'>
+                        <div class='row'>
+                            <div class='col-md-4 col-sm-4 col-xs-4'>
+                                <input type='checkbox' disabled='disabled' checked='checked'> Централізоване опалення
                             </div>
-                            <div class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                            <div class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type="text" class="form-control" id="inpHeatingPeriod"> грн./м<sup>2</sup><br>
+                                <input type='text' class='form-control' id='inpHeatingPeriod'> грн./м<sup>2</sup><br>
                                 неопалювальний період
-                                <input type="text" class="form-control" id="inpNotHeatingPeriod"> грн./м<sup>2</sup>
+                                <input type='text' class='form-control' id='inpNotHeatingPeriod'> грн./м<sup>2</sup>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" checked="checked" id="chbHotWater"> Централізоване постачання
+                <div class='panel panel-default'>
+                    <div class='panel-body'>
+                        <div class='row'>
+                            <div class='col-md-4 col-sm-4 col-xs-4'>
+                                <input type='checkbox' checked='checked' id='chbHotWater'> Централізоване постачання
                                 гарячої води
                             </div>
-                            <div id="HotWaterGroup" class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                            <div id='HotWaterGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type="text" class="form-control " id="inp"> грн./м<sup>3</sup><br>
+                                <input type='text' class='form-control ' id='t2-inpHotWaterH'> грн./м<sup>3</sup><br>
                                 неопалювальний період
-                                <input type="text" class="form-control" id="inp"> грн./м<sup>3</sup>
+                                <input type='text' class='form-control' id='t2-inpHotWater'> грн./м<sup>3</sup>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" checked="checked" id="chbColdWater"> Централізоване постачання
+                <div class='panel panel-default'>
+                    <div class='panel-body'>
+                        <div class='row'>
+                            <div class='col-md-4 col-sm-4 col-xs-4'>
+                                <input type='checkbox' checked='checked' id='chbColdWater'> Централізоване постачання
                                 холодної води
                             </div>
-                            <div id="ColdWaterGroup" class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                            <div id='ColdWaterGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type="text" class="form-control " id="inp"> грн./м<sup>3</sup><br>
+                                <input type='text' class='form-control ' id='t2-inpColdWaterH'> грн./м<sup>3</sup><br>
                                 неопалювальний період
-                                <input type="text" class="form-control" id="inp"> грн./м<sup>3</sup>
+                                <input type='text' class='form-control' id='t2-inpColdWater'> грн./м<sup>3</sup>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" checked="checked" id="chbGasSupply"> Газопостачання
+                <div class='panel panel-default'>
+                    <div class='panel-body'>
+                        <div class='row'>
+                            <div class='col-md-4 col-sm-4 col-xs-4'>
+                                <input type='checkbox' checked='checked' id='chbGasSupply'> Газопостачання
                             </div>
-                            <div id="GasSupplyGroup" class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                            <div id='GasSupplyGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type="text" class="form-control " id="inp"> м<sup>3</sup><br>
+                                <input type='text' class='form-control ' id='t2-inpGasSupplyH'> м<sup>3</sup><br>
                                 неопалювальний період
-                                <input type="text" class="form-control" id="inp"> м<sup>3</sup>
+                                <input type='text' class='form-control' id='t2-inpGasSupply'> м<sup>3</sup>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox" checked="checked" id="chbPowerSupply"> Електропостачання
+                <div class='panel panel-default'>
+                    <div class='panel-body'>
+                        <div class='row'>
+                            <div class='col-md-4 col-sm-4 col-xs-4'>
+                                <input type='checkbox' checked='checked' id='chbPowerSupply'> Електропостачання
                             </div>
-                            <div id="PowerSupplyGroup" class="col-md-8 col-sm-8 col-xs-8" style="text-align: right">
+                            <div id='PowerSupplyGroup' class='col-md-8 col-sm-8 col-xs-8' style='text-align: right'>
                                 опалювальний період
-                                <input type="text" class="form-control " id="inp"> кВат/год.<br>
+                                <input type='text' class='form-control ' id='t2-inpPowerSupplyH'> кВат/год.<br>
                                 неопалювальний період
-                                <input type="text" class="form-control" id="inp"> кВат/год.
+                                <input type='text' class='form-control' id='t2-inpPowerSupply   '> кВат/год.
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-pane" id="c">
-                <h3 id="h3SubsidiesProtocol">Протокол розрахунку субсидії від </h3>
+            <div class='tab-pane' id='c'>
+                <h3 id='h3SubsidiesProtocol'>Протокол розрахунку субсидії від </h3>
                 <!--інформація-->
-                <table class="table">
+                <table class='table'>
                     <thead>
                     <tr>
                         <td colspan=4><strong>Характеритики житлового приміщення</strong></td>
@@ -203,25 +191,25 @@
                     <tbody>
                     <tr>
                         <td>Кількість зареєстрованих осіб</td>
-                        <td id="countOfMembers"></td>
+                        <td id='countOfMembers'></td>
                         <td>Загальна площа житлового приміщення</td>
-                        <td id="areaOfHome"></td>
+                        <td id='areaOfHome'></td>
                     </tr>
                     <tr>
                         <td>Область місця знаходження</td>
-                        <td id="nameOfRegion"></td>
+                        <td id='nameOfRegion'></td>
                         <td>Опалювальна площа</td>
-                        <td id="areaOfHeating"></td>
+                        <td id='areaOfHeating'></td>
                     </tr>
                     <tr>
-                        <td >Тип населеного пункту</td>
-                        <td id="typeOfSettlement"></td>
+                        <td>Тип населеного пункту</td>
+                        <td id='typeOfSettlement'></td>
                     </tr>
                     </tbody>
                 </table>
 
                 <!--таблиця для розрахунок обов'язкового місячного платежу-->
-                <table class="table">
+                <table class='table'>
                     <thead>
                     <tr>
                         <td colspan=2><strong>Розрахунок місячного обов'язкового платежу</strong></td>
@@ -230,37 +218,37 @@
                     <tbody>
                     <tr>
                         <td>Прожитковий мінімум на одну особу в розрахунку на місяць</td>
-                        <td id="calcMin"></td>
+                        <td id='t3-calcMin'></td>
                     </tr>
                     <tr>
                         <td>Загальний дохід домогосподарства</td>
-                        <td id="sumSalary"></td>
+                        <td id='t3-sumSalary'></td>
                     </tr>
                     <tr>
                         <td>Середньомісячний дохід на домогосподарство</td>
-                        <td id="averageSalary"></td>
+                        <td id='t3-averageSalary'></td>
                     </tr>
                     <tr>
                         <td>Середньомісячний дохід на одну особу</td>
-                        <td id="averageSalaryForOne"></td>
+                        <td id='t3-averageSalaryForOne'></td>
                     </tr>
                     <tr>
                         <td>Відсоток обов'язкової частки платежу</td>
-                        <td id="percentOfBill"></td>
+                        <td id='t3-percentOfBill'></td>
                     </tr>
                     <tr>
                         <td>Обсяг місячного обов'язкового платежу</td>
-                        <td id="valueOfBill"></td>
+                        <td id='t3-valueOfBill'></td>
                     </tr>
                     </tbody>
                 </table>
 
                 <!--таблиця для неопалювального періоду-->
-                <table class="table table-striped table-hover">
+                <table class='table table-striped table-hover'>
                     <thead>
                     <tr>
                         <th>Розрахунок субсидії щодо сплати за послуги в неопалювальний період</th>
-                        <th id="subsidiesNotHeating">1</th>
+                        <th id='subsidiesNotHeating'>1</th>
                     </tr>
                     <tr>
                         <th>Послуга</th>
@@ -269,22 +257,22 @@
                         <th>Вартість послуги</th>
                     </tr>
                     </thead>
-                    <tbody id="tableSubsidiesNotHeating">
+                    <tbody id='tableSubsidiesNotHeating'>
                     <tr>
                         <td>Опалення</td>
-                        <td id="socialRule"></td>
-                        <td id="tariff"></td>
-                        <td id="cost"></td>
+                        <td id='t3-socialRule'></td>
+                        <td id='t3-tariff'></td>
+                        <td id='t3-cost'></td>
                     </tr>
                     </tbody>
                 </table>
 
                 <!--таблиця для опалювального періоду-->
-                <table class="table table-striped table-hover">
+                <table class='table table-striped table-hover'>
                     <thead>
                     <tr>
                         <th>Розрахунок субсидії щодо сплати за послуги в опалювальний період</th>
-                        <th id="subsidiesHeating">1</th>
+                        <th id='subsidiesHeating'>1</th>
                     </tr>
                     <tr>
                         <th>Послуга</th>
@@ -293,31 +281,31 @@
                         <th>Вартість послуги</th>
                     </tr>
                     </thead>
-                    <tbody id="tableSubsidiesHeating">
+                    <tbody id='tableSubsidiesHeating'>
                     <tr>
                         <td>Опалення</td>
-                        <td id="socialRule"></td>
-                        <td id="tariff"></td>
-                        <td id="cost"></td>
+                        <td id='t3-socialRuleH'></td>
+                        <td id='t3-tariffH'></td>
+                        <td id='t3-costH'></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="row" style="margin-bottom: 20px; margin-top: 10px;">
-            <div class="col-md-6 col-sm-6 col-xs-6">
-                <button class="btn" id="btnPrev">Повернутись назад</button>
+        <div class='row' style='margin-bottom: 20px; margin-top: 10px;'>
+            <div class='col-md-6 col-sm-6 col-xs-6'>
+                <button class='btn' id='btnPrev'>Повернутись назад</button>
 
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-6">
-                <button class="btn  pull-right" id="btnNext">Перейти далі</button>
+            <div class='col-md-6 col-sm-6 col-xs-6'>
+                <button class='btn  pull-right' id='btnNext'>Перейти далі</button>
             </div>
         </div>
     </div>
 </div>
 <!-- /tabs -->
 
-<script src="js/script.js"></script>
+<script src='js/script.js'></script>
 
 </body>
 

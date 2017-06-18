@@ -1,6 +1,9 @@
+var MINIMUM_BILL = 1544;
+
+
 function DropdownClick(val) {
     var y = document.getElementsByClassName('btn dropdown-toggle');
-    var aNode = y[0].innerHTML = val + ' <span class="caret"></span>'; // Append 
+    var aNode = y[0].innerHTML = val + ' <span class="caret"></span>'; // Append
 }
 
 function AddElementToDropdown(el, region) {
@@ -13,7 +16,7 @@ function AddElementToDropdown(el, region) {
 
     var a = document.createElement('a');
     a.innerHTML = region;
-    a.href = "#";
+    a.href = '#';
     parentEl.appendChild(li);
     li.appendChild(a);
 }
@@ -26,15 +29,16 @@ $('#btnNext').click(function () {
 // buttons for navigation Previous
 $('#btnPrev').click(function () {
     $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+    Calculate3Tab();
 });
 
-document.getElementById('a1').onclick = function () {
+document.getElementById('t1').onclick = function () {
     Calculate3Tab();
 };
-document.getElementById('b1').onclick = function () {
+document.getElementById('t2').onclick = function () {
     Calculate3Tab();
 };
-document.getElementById('c1').onclick = function () {
+document.getElementById('t3').onclick = function () {
     Calculate3Tab();
 };
 document.getElementById('chbHotWater').onclick = function () {
@@ -63,12 +67,13 @@ function ShowOrHideElementById(el) {
 
 // add new row to table
 document.getElementById('btnAddRow').onclick = function () {
-    var rowsCounter = document.getElementById("tableMembers").rows.length;
+    var rowsCounter = document.getElementById('t1-tableMembers').rows.length;
 
     var index = 0;
 
-    var parent = document.getElementById('tableBody');
+    var parent = document.getElementById('t1-tableBody');
     var tr = document.createElement('tr');
+    tr.setAttribute('id', 't1-row'+rowsCounter);
     parent.appendChild(tr);
 
     function AddElToTd(el) {
@@ -99,28 +104,36 @@ document.getElementById('btnAddRow').onclick = function () {
 
     var chbIsWork = document.createElement('input');
     chbIsWork.type = 'checkbox';
-    chbIsWork.setAttribute('id', 'chbMemIsWork' + rowsCounter);
+    chbIsWork.setAttribute('id', 't1-chbMemIsWork' + rowsCounter);
     AddElToTd(chbIsWork);
 
     var inputSalary = document.createElement('input');
     inputSalary.type = 'text';
-    inputSalary.setAttribute('id', 'inpMemSalary' + rowsCounter);
+    inputSalary.setAttribute('id', 't1-inpMemSalary' + rowsCounter);
     AddElToTd(inputSalary);
+};
+// del last row in table
+document.getElementById('btnDelRow').onclick = function () {
+    var rowsCounter = document.getElementById('t1-tableMembers').rows.length;
+    if(rowsCounter>2) {
+        var el = document.getElementById('t1-row' + (rowsCounter - 1));
+        el.parentNode.removeChild(el);
+    }
 };
 
 window.onload = function () {
     // add regions to dropdown menu
-    var arr = ["Івано-Франківська", "АР Крим", "Вінницька", "Волинська", "Дніпропетровська", "Донецька", "Житомирська",
-        "Закарпатська", "Запорізька", "Кіровоградська", "Київська", "Курорт Буковель", "Луганська", "Львівська",
-        "Миколаївська", "Одеська", "Полтавська", "Рівненська", "Сумська", "Тернопільська", "Харківська", "Херсонська",
-        "Хмельницька", "Черкаська", "Чернівецька", "Чернігівська"];
+    var arr = ['Івано-Франківська', 'АР Крим', 'Вінницька', 'Волинська', 'Дніпропетровська', 'Донецька', 'Житомирська',
+        'Закарпатська', 'Запорізька', 'Кіровоградська', 'Київська', 'Курорт Буковель', 'Луганська', 'Львівська',
+        'Миколаївська', 'Одеська', 'Полтавська', 'Рівненська', 'Сумська', 'Тернопільська', 'Харківська', 'Херсонська',
+        'Хмельницька', 'Черкаська', 'Чернівецька', 'Чернігівська'];
 
     arr.forEach(function (item) {
-        AddElementToDropdown('DropDownRegion', item);
+        AddElementToDropdown('t1-DropDownRegionUl', item);
     });
 
     // add type of settlement to dropdown menu
-    var settlement = ["Село", "Селище", "Селище міського типу", "Місто"];
+    var settlement = ['Село', 'Селище', 'Селище міського типу', 'Місто'];
 
     settlement.forEach(function (item) {
         AddElementToDropdown('DropDownTypeSettlement', item);
@@ -140,17 +153,39 @@ window.onload = function () {
 
 function Calculate3Tab() {
     ViewSpecifications();
+    CalculateMinimumBill();
+
+    function CalculateMinimumBill() {
+        document.getElementById('t3-calcMin').innerHTML = MINIMUM_BILL + ' грн.';
+
+        var peopleCount = document.getElementById('t1-tableMembers').rows.length-1;
+
+        var salarySum = 0;
+        for (var i = 1; i < peopleCount; i++) {
+            var salaryEl = document.getElementById('t1-inpMemSalary' + i);
+            salarySum += parseFloat(salaryEl.value);
+        }
+        var averageSalary = salarySum / 12;
+        var averageSalaryForOne = averageSalary / peopleCount;
+        var percent = averageSalaryForOne / MINIMUM_BILL / 2 / 100 * 15;
+
+        document.getElementById('t3-sumSalary').innerHTML = salarySum + ' грн. (сумарний дохід за попередній рік)';
+        document.getElementById('t3-averageSalary').innerHTML = averageSalary + ' грн. (= ' + salarySum + 'грн. / 12 місяців)';
+        document.getElementById('t3-averageSalaryForOne').innerHTML = averageSalaryForOne + ' грн. (= ' + averageSalary + 'грн. /' + peopleCount + ' особу(и))';
+        document.getElementById('t3-percentOfBill').innerHTML = percent + ' % (= ' + averageSalaryForOne + 'грн. /' + MINIMUM_BILL + ' грн. /2* 15%)';
+        document.getElementById('t3-valueOfBill').innerHTML = percent + ' грн. (= ' + averageSalaryForOne + 'грн. /100' +percent + ' %)';
+    }
+
     function ViewSpecifications() {
+        var rowsCounter = document.getElementById('t1-tableMembers').rows.length;
 
-        var rowsCounter = document.getElementById("tableMembers").rows.length;
-
-        var count = rowsCounter;
+        var peopleCount = rowsCounter - 1;
         var homeArea = document.getElementById('inpTotalArea').innerHTML;
         var homeHeatingArea = document.getElementById('inpHeatArea').innerHTML;
-        var region = document.getElementById('dropRegion').innerHTML;
+        var region = document.getElementById('t1-dropRegion').innerHTML;
         var typeOfSettlement = document.getElementById('dropSettlement').innerHTML;
 
-        document.getElementById('countOfMembers').innerHTML = count;
+        document.getElementById('countOfMembers').innerHTML = peopleCount;
         document.getElementById('areaOfHome').innerHTML = homeArea;
         document.getElementById('areaOfHeating').innerHTML = homeHeatingArea;
         document.getElementById('nameOfRegion').innerHTML = region;
