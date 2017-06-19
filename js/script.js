@@ -50,14 +50,14 @@ function Calculate3Tab() {
         var rowsCounter = document.getElementById('t1-tableMembers').rows.length;
 
         var peopleCount = rowsCounter - 1;
-        var homeArea = document.getElementById('inpTotalArea').innerHTML;
-        var homeHeatingArea = document.getElementById('inpHeatArea').innerHTML;
+        var homeArea = document.getElementById('inpTotalArea').value;
+        var homeHeatingArea = document.getElementById('inpHeatArea').value;
         var region = document.getElementById('t1-dropRegion').innerHTML;
         var typeOfSettlement = document.getElementById('dropSettlement').innerHTML;
 
         document.getElementById('countOfMembers').innerHTML = peopleCount;
-        document.getElementById('areaOfHome').innerHTML = homeArea;
-        document.getElementById('areaOfHeating').innerHTML = homeHeatingArea;
+        document.getElementById('t3-areaOfHome').innerHTML = homeArea;
+        document.getElementById('t3-areaOfHeating').innerHTML = homeHeatingArea;
         document.getElementById('nameOfRegion').innerHTML = region;
         document.getElementById('typeOfSettlement').innerHTML = typeOfSettlement;
     }
@@ -234,11 +234,6 @@ document.getElementById('btnAddRow').onclick = function () {
     var inputName = document.createElement('input');
     inputName.type = 'text';
     AddElToTd(inputName);
-
-    var chbIsWork = document.createElement('input');
-    chbIsWork.type = 'checkbox';
-    chbIsWork.setAttribute('id', 't1-chbMemIsWork' + rowsCounter);
-    AddElToTd(chbIsWork);
 
     var inputSalary = document.createElement('input');
     inputSalary.type = 'text';
